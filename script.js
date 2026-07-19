@@ -597,8 +597,22 @@ function displayPlacard(trophy) {
         audioPlayer.removeAttribute(
             "src"
         );
+     
 
     }
+    /* =====================================================
+   UPDATE RESPONSIVE BACKGROUND DECORATIONS
+
+   IMPORTANT:
+   This is OUTSIDE the if/else,
+   so it runs for EVERY trophy.
+===================================================== */
+
+requestAnimationFrame(() => {
+
+    updateBackgroundDecorations();
+
+});
 
 }
 
@@ -781,7 +795,27 @@ function resetAudioUI() {
         "";
 
 }
+/* =========================================================
+   RESPONSIVE BACKGROUND DECORATIONS
+========================================================= */
 
+function updateBackgroundDecorations() {
+
+    const contentDeck =
+        document.querySelector(".content-deck");
+
+    if (!contentDeck) {
+        return;
+    }
+
+    const deckHeight =
+        contentDeck.offsetHeight;
+
+    contentDeck.style.setProperty(
+        "--deck-height",
+        deckHeight + "px"
+    );
+}
 
 /* =========================================================
    CLICK ORIGINAL
@@ -1242,6 +1276,10 @@ audioPlayer.addEventListener(
 
     }
 
+);
+window.addEventListener(
+    "resize",
+    updateBackgroundDecorations
 );
 
 
