@@ -1,69 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Trophy</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
 </head>
+
+
 <body>
 
+
 <div class="placard-wrapper">
-    
-    <!-- UPPER HERO ZONE -->
+
+
+    <!-- =====================================================
+         UPPER HERO ZONE
+    ====================================================== -->
+
     <div class="hero-zone animate-fade-in">
+
+
+        <!-- TITLE -->
+
         <header class="placard-header">
+
             <h1 id="title"></h1>
+
         </header>
 
+
+
+        <!-- TROPHY IMAGE -->
+
         <div class="artifact-showcase">
-            <img id="trophyImage" alt="Exhibit Object" class="artifact-img">
+
+            <img
+                id="trophyImage"
+                alt="Exhibit Object"
+                class="artifact-img">
+
         </div>
+
+
+
+        <!-- =================================================
+             AUDIO AREA
+        ================================================== -->
 
         <footer class="audio-footer-action">
-            <button id="playButton" class="audio-btn">
-                <span class="audio-icon">🎧</span>
-                <span class="btn-main-label">LISTEN TO THE STORY</span>
-                <span class="audio-arrow">▶</span>
+
+
+            <!-- ORIGINAL LISTEN BUTTON -->
+
+            <button
+                id="playButton"
+                class="audio-btn"
+                type="button">
+
+                <span class="audio-icon">
+                    🎧
+                </span>
+
+                <span class="btn-main-label">
+                    LISTEN TO THE STORY
+                </span>
+
+                <span class="audio-arrow">
+                    ▶
+                </span>
+
             </button>
+
+
+
+            <!-- =================================================
+                 SEEK PLAYER
+
+                 Hidden when page first opens.
+
+                 It appears only AFTER user clicks
+                 "LISTEN TO THE STORY".
+            ================================================== -->
+
+            <div
+                id="audioSeekControls"
+                class="audio-seek-controls"
+                hidden>
+
+
+                <!-- PLAY / PAUSE -->
+
+                <button
+                    id="audioPauseBtn"
+                    class="audio-seek-play"
+                    type="button"
+                    aria-label="Play or pause audio">
+
+                    <span id="audioPlayIcon">
+                        ❚❚
+                    </span>
+
+                </button>
+
+
+
+                <!-- CURRENT TIME -->
+
+                <span
+                    id="audioCurrentTime"
+                    class="audio-seek-time">
+
+                    0:00
+
+                </span>
+
+
+
+                <!-- SEEK BAR -->
+
+                <input
+                    id="audioSeekBar"
+                    class="audio-seek-range"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                    step="0.1"
+                    aria-label="Audio progress">
+
+
+
+                <!-- TOTAL TIME -->
+
+                <span
+                    id="audioTotalTime"
+                    class="audio-seek-time">
+
+                    0:00
+
+                </span>
+
+
+            </div>
+
+
+
+            <!-- ACTUAL AUDIO ELEMENT -->
+
             <audio id="audioPlayer"></audio>
+
+
         </footer>
+
+
     </div>
 
-    <!-- LOWER CONTENT DECK -->
+
+
+    <!-- =====================================================
+         LOWER CONTENT DECK
+    ====================================================== -->
+
     <div class="content-deck">
-        
-        <!-- TOGGLE CONTROLS -->
+
+
+        <!-- DECORATIVE BACKGROUNDS -->
+
+        <div class="crest-watermark"></div>
+
+        <div class="heritage-watermark"></div>
+
+
+
+        <!-- =================================================
+             SUMMARY / TIMELINE TOGGLE
+        ================================================== -->
+
         <div class="interactive-toggle-bar dynamic-reveal">
-            <button id="toggleSummaryBtn" class="toggle-tab active" onclick="switchView('summary')">
-                <span>📜</span> SUMMARY
+
+
+            <button
+                id="toggleSummaryBtn"
+                class="toggle-tab active"
+                onclick="switchView('summary')">
+
+                <span>📜</span>
+
+                SUMMARY
+
             </button>
-            <button id="toggleTimelineBtn" class="toggle-tab" onclick="switchView('timeline')">
-                <span>⏳</span> TIMELINE
+
+
+            <button
+                id="toggleTimelineBtn"
+                class="toggle-tab"
+                onclick="switchView('timeline')">
+
+                <span>⏳</span>
+
+                TIMELINE
+
             </button>
+
+
         </div>
 
-        <!-- DYNAMIC CONTENT -->
-        <section id="summaryViewBlock" class="summary-segment dynamic-reveal">
-            <div id="historyText" class="summary-body"></div>
-        </section>
 
-        
 
-        <!-- KEY INFORMATION -->
-        <section class="info-segment dynamic-reveal">
-            <div class="info-segment-header">
-                <span class="title-icon">🏛️</span> KEY INFORMATION
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section
+            id="summaryViewBlock"
+            class="summary-segment dynamic-reveal">
+
+            <div
+                id="historyText"
+                class="summary-body">
             </div>
-            <div id="factsContainer" class="facts-grid-matrix"></div>
+
         </section>
-        
+
+
+
+        <!-- =================================================
+             TIMELINE
+        ================================================== -->
+
+        <section
+            id="timelineViewBlock"
+            class="timeline-segment hidden-element">
+
+            <div id="timelineContainer"></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             KEY INFORMATION
+        ================================================== -->
+
+        <section class="info-segment dynamic-reveal">
+
+
+            <div class="info-segment-header">
+
+                <span class="title-icon">
+                    🏛️
+                </span>
+
+                KEY INFORMATION
+
+            </div>
+
+
+            <div
+                id="factsContainer"
+                class="facts-grid-matrix">
+            </div>
+
+
+        </section>
+
+
     </div>
+
+
 </div>
 
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
 <script src="script.js"></script>
+
+
 </body>
+
 </html>
