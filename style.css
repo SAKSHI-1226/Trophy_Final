@@ -2278,7 +2278,7 @@ It should feel alive, NOT like the trophy is floating.
     transform: translateX(-50%);
 
     width: 380px;
-    height: 380px;
+    height: 280px;
 
     background: url("./images/regiment-crest.png")
                 center / contain no-repeat;
