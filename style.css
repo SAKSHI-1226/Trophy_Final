@@ -1981,3 +1981,572 @@ It should feel alive, NOT like the trophy is floating.
     }
 
 }
+
+/* =========================================================
+   PREMIUM HERITAGE BACKGROUND DESIGN
+   Crest Watermark + Architectural Sketch
+========================================================= */
+
+
+/* =========================================================
+   CONTENT AREA
+========================================================= */
+
+.content-deck {
+    position: relative;
+    isolation: isolate;
+
+    overflow: hidden;
+
+    /*
+       Warm museum-paper background
+    */
+    background:
+        linear-gradient(
+            180deg,
+            #f8f4eb 0%,
+            #f5efe3 55%,
+            #f2eadc 100%
+        );
+}
+
+
+/*
+Very subtle paper grain.
+*/
+
+.content-deck::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    opacity: 0.20;
+
+    background-image:
+        radial-gradient(
+            rgba(91, 69, 39, 0.10) 0.5px,
+            transparent 0.5px
+        );
+
+    background-size:
+        6px 6px;
+}
+
+
+/*
+All actual page content stays above backgrounds.
+*/
+
+.content-deck > * {
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-segment {
+    position: relative;
+
+    isolation: isolate;
+
+    overflow: visible;
+}
+
+
+
+
+/* =========================================================
+   FINAL HERITAGE BACKGROUND SYSTEM
+   1. Centered Regimental Crest behind Summary
+   2. Faded Heritage Building behind Key Information
+========================================================= */
+
+
+/* =========================================================
+   SUMMARY — CENTERED REGIMENTAL CREST
+========================================================= */
+
+.summary-segment {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+
+/* Large centered crest watermark */
+
+.summary-segment::before {
+    content: "";
+
+    position: absolute;
+
+    /* Perfectly centered */
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    /* Large watermark */
+    width: 440px;
+    height: 440px;
+
+    /* Correct image path */
+    background-image:
+        url("./images/regiment-crest.png");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    /*
+       Faded museum watermark
+       Increase to 0.12 if you want it stronger
+       Reduce to 0.06 if you want it softer
+    */
+    opacity: 0.09;
+
+    /*
+       Converts colored crest into
+       subtle antique brown tone
+    */
+    filter:
+        grayscale(1)
+        sepia(1)
+        saturate(0.9)
+        contrast(0.85);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/*
+   Keep summary text above crest
+*/
+
+.summary-body {
+    position: relative;
+    z-index: 2;
+
+    background: transparent;
+}
+
+
+.summary-body p {
+    position: relative;
+    z-index: 2;
+
+    background: transparent;
+}
+
+
+/* =========================================================
+   KEY INFORMATION — HERITAGE BUILDING
+========================================================= */
+
+.info-segment {
+    position: relative;
+
+    isolation: isolate;
+
+    overflow: hidden;
+
+    /*
+       Gives enough vertical area for the
+       building to emerge from the bottom
+    */
+    min-height: 520px;
+}
+
+
+/*
+   Heritage building illustration
+*/
+
+.info-segment::before {
+    content: "";
+
+    position: absolute;
+
+    /*
+       Lower-right positioning
+    */
+    right: -4%;
+    bottom: -3%;
+
+    /*
+       Large enough to feel like part
+       of the page rather than a small picture
+    */
+    width: 68%;
+    height: 65%;
+
+    background-image:
+        url("./images/heritage-building.png");
+
+    background-repeat: no-repeat;
+
+    background-position:
+        right bottom;
+
+    background-size:
+        contain;
+
+    /*
+       Building visibility
+    */
+    opacity: 0.30;
+
+    /*
+       Blend into warm museum paper
+    */
+    filter:
+        sepia(0.65)
+        saturate(0.65)
+        contrast(0.80);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+
+    /*
+       Fade the TOP of the building.
+
+       Prevents it from looking like
+       a rectangular pasted photograph.
+    */
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+
+            transparent 0%,
+
+            rgba(0, 0, 0, 0.10) 8%,
+
+            rgba(0, 0, 0, 0.45) 22%,
+
+            rgba(0, 0, 0, 0.85) 42%,
+
+            black 65%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+
+            transparent 0%,
+
+            rgba(0, 0, 0, 0.10) 8%,
+
+            rgba(0, 0, 0, 0.45) 22%,
+
+            rgba(0, 0, 0, 0.85) 42%,
+
+            black 65%
+        );
+}
+
+
+/* =========================================================
+   LEFT-SIDE FADE FOR BUILDING
+========================================================= */
+
+/*
+   This parchment gradient sits over the LEFT
+   side of the building.
+
+   Result:
+
+   TEXT → faint building → stronger building
+
+   instead of:
+
+   TEXT | rectangular building image
+*/
+
+.info-segment::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 72%;
+    height: 68%;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            #f3ecdf 0%,
+
+            rgba(243, 236, 223, 0.95) 8%,
+
+            rgba(243, 236, 223, 0.72) 24%,
+
+            rgba(243, 236, 223, 0.35) 43%,
+
+            rgba(243, 236, 223, 0.08) 65%,
+
+            transparent 82%
+        );
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   KEEP KEY INFORMATION ABOVE BUILDING
+========================================================= */
+
+.info-segment-header,
+.facts-grid-matrix {
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.matrix-row-split {
+    position: relative;
+
+    z-index: 3;
+
+    background: transparent;
+}
+
+
+.fact-card {
+    position: relative;
+
+    z-index: 3;
+
+    /*
+       Mostly transparent so the heritage
+       illustration can subtly show through.
+    */
+
+    background:
+        rgba(248, 244, 235, 0.05);
+}
+
+
+.fact-meta-container,
+.key-icon {
+    position: relative;
+
+    z-index: 4;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+
+    /* =====================================================
+       CREST
+    ===================================================== */
+
+    .summary-segment::before {
+
+        /*
+           Large centered crest
+           behind entire Summary
+        */
+
+        width: 330px;
+        height: 330px;
+
+        left: 50%;
+        top: 50%;
+
+        right: auto;
+
+        transform:
+            translate(-50%, -50%);
+
+        /*
+           Slightly stronger because
+           phone screens are smaller
+        */
+
+        opacity: 0.10;
+
+        background-position:
+            center;
+
+        background-size:
+            contain;
+    }
+
+
+    /* =====================================================
+       KEY INFORMATION
+    ===================================================== */
+
+    .info-segment {
+
+        min-height: 620px;
+
+        /*
+           Creates room for illustration
+           toward bottom
+        */
+
+        padding-bottom: 65px;
+    }
+
+
+    /* =====================================================
+       BUILDING — MOBILE
+    ===================================================== */
+
+    .info-segment::before {
+
+        /*
+           Make building larger on phone
+           so details remain visible
+        */
+
+        width: 88%;
+        height: 52%;
+
+        right: -15%;
+        bottom: -2%;
+
+        opacity: 0.27;
+
+        background-position:
+            right bottom;
+
+        background-size:
+            contain;
+
+
+        /*
+           Smooth vertical fade
+        */
+
+        -webkit-mask-image:
+            linear-gradient(
+                to bottom,
+
+                transparent 0%,
+
+                rgba(0,0,0,0.08) 7%,
+
+                rgba(0,0,0,0.40) 23%,
+
+                rgba(0,0,0,0.85) 43%,
+
+                black 65%
+            );
+
+        mask-image:
+            linear-gradient(
+                to bottom,
+
+                transparent 0%,
+
+                rgba(0,0,0,0.08) 7%,
+
+                rgba(0,0,0,0.40) 23%,
+
+                rgba(0,0,0,0.85) 43%,
+
+                black 65%
+            );
+    }
+
+
+    /*
+       Left-side parchment fade
+    */
+
+    .info-segment::after {
+
+        width: 95%;
+        height: 55%;
+
+        right: 0;
+        bottom: 0;
+
+        background:
+            linear-gradient(
+                90deg,
+
+                #f3ecdf 0%,
+
+                rgba(243,236,223,0.96) 12%,
+
+                rgba(243,236,223,0.72) 30%,
+
+                rgba(243,236,223,0.30) 50%,
+
+                rgba(243,236,223,0.05) 72%,
+
+                transparent 88%
+            );
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+
+    /* Crest */
+
+    .summary-segment::before {
+
+        width: 290px;
+        height: 290px;
+
+        left: 50%;
+        top: 50%;
+
+        right: auto;
+
+        transform:
+            translate(-50%, -50%);
+
+        opacity: 0.09;
+    }
+
+
+    /* Building */
+
+    .info-segment::before {
+
+        width: 95%;
+        height: 48%;
+
+        right: -20%;
+        bottom: -1%;
+
+        opacity: 0.25;
+    }
+
+}
